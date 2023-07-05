@@ -11,7 +11,7 @@ const Productos = () =>{
 		try{
 			const respuesta = await fetch(direccion);
 			const datos = await respuesta.json();
-			//console.log(datos.products)
+			console.log(datos.products)
 			setProductos(datos.products);
 		}
 		catch (error){
@@ -23,13 +23,19 @@ const Productos = () =>{
 		cargarDatos(url);
 	},[])
 
+	const slug='nuevaPagina';
+
 	return (
         <section className='flex justify-center items-center h-screen'>
            <ul>
 					 		{productos.map((item, index)=>(
 									<li key={index}>
-										<Link href={`${item.id}`}>
+										<Link href={`${item.id}`} className='text-pink-500'>
 											{item.title}
+										</Link>
+										<p>  </p>
+										<Link href={`${slug}?imagen1=${item.images[0]}&title1=${item.title}`} className='text-teal-900'>
+											Link con parametros adicionales
 										</Link>
 									</li>
 							))}
